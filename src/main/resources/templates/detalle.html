@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'Etiqueta ' + ${etiqueta.nombre}"></title>
+  <style>
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 40px 20px;
+      color: #333;
+    }
+    .contenedor {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .cabecera {
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .cabecera h1 { margin: 0 0 10px 0; font-size: 3.5em; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .badge { background: #e74c3c; padding: 6px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+
+    h2 {
+      color: #2c3e50;
+      border-left: 5px solid #3498db;
+      padding-left: 15px;
+      margin-top: 35px;
+      font-size: 1.5em;
+    }
+    p { font-size: 1.1em; line-height: 1.6; color: #555; }
+
+    pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+
+    .ejemplo-real {
+      border: 1px solid #e0e0e0;
+      padding: 25px;
+      margin-top: 15px;
+      border-radius: 8px;
+      background: #fafafa;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .navegacion {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 25px;
+      border-top: 2px solid #f0f0f0;
+    }
+    .btn {
+      padding: 12px 25px;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn:hover { background: #2980b9; transform: translateY(-2px); }
+    .btn-inicio { background: #7f8c8d; }
+    .btn-inicio:hover { background: #636e72; }
+  </style>
+</head>
+<body>
+
+<div class="contenedor">
+  <div class="cabecera">
+    <h1 th:text="${etiqueta.nombre}"></h1>
+    <span class="badge" th:text="${etiqueta.categoria}"></span>
+  </div>
+
+  <h2>Descripción y significado</h2>
+  <p th:text="${etiqueta.descripcion}"></p>
+
+  <h2>Sintaxis básica</h2>
+  <pre><code th:text="${etiqueta.sintaxis}"></code></pre>
+
+  <h2>Atributos más comunes</h2>
+  <p th:text="${etiqueta.atributos}"></p>
+
+  <h2>Ejemplo de código</h2>
+  <pre><code th:utext="${etiqueta.codigoEjemplo}"></code></pre>
+
+  <h2>Ejemplo funcional (Renderizado real)</h2>
+  <div class="ejemplo-real" th:utext="${etiqueta.ejemploReal}"></div>
+
+  <div class="navegacion">
+    <a class="btn" th:if="${etiqueta.idAnterior != ''}" th:href="@{/etiqueta/{id}(id=${etiqueta.idAnterior})}">← Anterior</a>
+    <a class="btn btn-inicio" th:href="@{/}">Volver al Catálogo</a>
+    <a class="btn" th:if="${etiqueta.idSiguiente != ''}" th:href="@{/etiqueta/{id}(id=${etiqueta.idSiguiente})}">Siguiente →</a>
+  </div>
+</div>
+
+</body>
+</html>

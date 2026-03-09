@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Etiquetas HTML</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 40px; }
+        h1 { text-align: center; color: #333; }
+        h3 { text-align: center; color: #333; }
+        .grid-catalogo { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+        .tarjeta { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; transition: transform 0.2s; }
+        .tarjeta:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .tarjeta a { text-decoration: none; color: #0056b3; font-size: 1.5em; font-weight: bold; }
+        .tarjeta a:hover { color: #003d82; }
+        .categoria { color: #888; font-size: 0.9em; margin-top: 10px; }
+
+
+        .gifCat {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            font-family: "Comic Sans MS", "Comic Sans", "Inconsolata Black";
+            color: #666;
+        }
+        .gifCat img {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Catálogo de Etiquetas HTML - Practica 1</h1>
+<h3>Gabriel Alejandro Becerril Cabral</h3>
+<h3>Pedro Antonio Jimenez Ramirez</h3>
+<h3>4CM1</h3>
+
+<div class="grid-catalogo">
+    <div th:each="etiqueta : ${etiquetas}" class="tarjeta">
+        <a th:href="@{/etiqueta/{id}(id=${etiqueta.id})}" th:text="${etiqueta.nombre}"></a>
+        <div class="categoria" th:text="${etiqueta.categoria}"></div>
+    </div>
+</div>
+
+<div class="gifCat">
+    <img th:src="@{/imgs/tomcat.gif}" alt="GRACIAS TOMCAT">
+    <p>Gracias Tomcat</p>
+</div>
+
+</body>
+</html>
